@@ -38,8 +38,8 @@
                Cosmetics
              </a>
              <ul class="dropdown-menu" aria-labelledby="cosmeticsDropdown">
-               <li><a class="dropdown-item" href="#">Beauty Products</a></li>
-               <li><a class="dropdown-item" href="#">Skin Care </a></li>
+               <li><a class="dropdown-item" href="{% url 'makeup' %}">Beauty Products</a></li>
+               <li><a class="dropdown-item" href="{% url 'skincare' %}">Skin Care </a></li>
              </ul>
            </li>
            <li class="nav-item dropdown">
@@ -47,9 +47,9 @@
                Fashion
              </a>
              <ul class="dropdown-menu" aria-labelledby="accDropdown">
-               <li><a class="dropdown-item" href="#">Accessories</a></li>
-               <li><a class="dropdown-item" href="#">Perfumes</a></li>
-               <li><a class="dropdown-item" href="#">Hair Care</a></li>
+               <li><a class="dropdown-item" href="{% url 'accessories' %}">Accessories</a></li>
+               <li><a class="dropdown-item" href="{% url 'perfume' %}">Perfumes</a></li>
+               <li><a class="dropdown-item" href="{% url 'haircare' %}">Hair Care</a></li>
              </ul>
            </li>
          </ul>
@@ -104,3 +104,16 @@
     <script src="{% static 'app/js/myscript.js' %}"></script>
   </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -24,8 +24,20 @@ def orders(request):
 def change_password(request):
  return render(request, 'app/changepassword.html')
 
-def mobile(request):
- return render(request, 'app/mobile.html')
+def makeup(request):
+ return render(request, 'app/makeup.html')
+
+def skincare(request):
+ return render(request, 'app/skincare.html')
+
+def accessories(request):
+ return render(request, 'app/accessories.html')
+
+def perfume(request):
+ return render(request, 'app/perfume.html')
+
+def haircare(request):
+ return render(request, 'app/haircare.html')
 
 def login(request):
  return render(request, 'app/login.html')

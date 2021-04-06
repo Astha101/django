@@ -24,8 +24,11 @@ class Customer(models.Model):
         return str(self.id)
 
 CATEGORY_CHOICES = (
-    ('C','Cosmetics'),
-    ('F','Fashion')
+    ('B','Beauty Products'),
+    ('S','Skincare'),
+    ('A','Accessories'),
+    ('P','Perfumes'),
+    ('H','Haircare'),
 )
 class Product(models.Model):
     title=models.CharField(max_length=100)

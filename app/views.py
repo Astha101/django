@@ -1,7 +1,20 @@
 from django.shortcuts import render
+from django.views import View
+from .models import Customer, Product, Cart, OrderPlaced
 
-def home(request):
- return render(request, 'app/home.html')
+# def home(request):
+#  return render(request, 'app/home.html')
+
+class ProductView(View):
+ def get(self,request):
+  beautyproducts = Product.objects.filter(category='B')
+  skincare = Product.objects.filter(category='S')
+  accessories = Product.objects.filter(category='A')
+  perfumes = Product.objects.filter(category='P')
+  haircare = Product.objects.filter(category='H')
+  return render(request, 'app/home.html',
+                   {'beautyproducts':beautyproducts, 'skincare':skincare, 'accessories':accessories,
+                    'perfumes':perfumes, 'haircare':haircare})
 
 def product_detail(request):
  return render(request, 'app/productdetail.html')

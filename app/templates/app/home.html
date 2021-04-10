@@ -46,11 +46,11 @@
 {% block main-content %}
 <!-- 1st Product Slider -->
 <div class="m-3">
- <h2>ALl that Glitters Deals Beauty Products</h2>
+ <h2>ALl that Glitters Beauty Products</h2>
  <!-- Slider 1 -->
  <div class="owl-carousel" id="slider1">
      {% for b in beautyproducts %}
-  <a href="{% url 'product-detail' %}" class="btn"><div class="item"><img
+  <a href="{% url 'product-detail' b.id %}" class="btn"><div class="item"><img
           src="{{b.product_image.url}}" alt="" height="200px"><span
           class="fw-bold">{{b.title}}</span><br><span class="fs-5">Rs. {{b.discounted_price}}</span></div></a>
      {% endfor %}
@@ -63,11 +63,11 @@
 
 <!-- 2nd Product Slider -->
 <div class="mx-3">
- <h2>Trending Deals</h2>
+ <h2>All that Glitters Accessories</h2>
  <!-- Slider 2 -->
- <div class="owl-carousel" id="slider2">
+ <div class="owl-carousel" id="slider3">
      {% for a in accessories %}
-  <a href="{% url 'product-detail' %}" class="btn"><div class="item"><img
+  <a href="{% url 'product-detail' a.id %}" class="btn"><div class="item"><img
           src="{{a.product_image.url}}" alt="" height="200px"><span
           class="fw-bold">{{a.title}}</span><br><span class="fs-5">Rs. {{a.discounted_price}}</span></div></a>
      {% endfor %}
@@ -75,5 +75,21 @@
  </div>
 </div>
 <!-- End 2nd Product Slider -->
+
+<!-- 3rd Product Slider -->
+<div class="mx-3">
+ <h2>All that Glitters Haircare</h2>
+ <!-- Slider 3 -->
+ <div class="owl-carousel" id="slider2">
+     {% for h in haircare %}
+  <a href="{% url 'product-detail' h.id %}" class="btn"><div class="item"><img
+          src="{{h.product_image.url}}" alt="" height="200px"><span
+          class="fw-bold">{{h.title}}</span><br><span class="fs-5">Rs. {{h.discounted_price}}</span></div></a>
+     {% endfor %}
+
+ </div>
+</div>
+<!-- End 3rd Product Slider -->
+
 {% endblock main-content %}
 

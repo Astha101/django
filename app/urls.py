@@ -30,6 +30,7 @@ urlpatterns = [
     path('haircare/<slug:data>', views.haircare, name='haircaredata'),
 
     path('login/', views.login, name='login'),
-    path('registration/', views.customerregistration, name='customerregistration'),
     path('checkout/', views.checkout, name='checkout'),
+    path('registration/', views.CustomerRegistrationView.
+         as_view(), name="customerregistration")
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

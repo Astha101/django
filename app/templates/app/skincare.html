@@ -5,10 +5,37 @@
 <div class="container my-5">
  <div class="row">
   <div class="col-sm-3">
-   Side Bar for Skin care Products filter
+   <div class="list-group">
+    <a href="{% url 'skincare' %}" class="list-group-item
+    list-group-item-action" aria-current="true">All Skincare</a>
+    <a href="{% url 'skincaredata' 'Cetaphil' %}"
+       class="list-group-item list-group-item-action"
+       aria-current="true">Cetaphil</a>
+    <a href="{% url 'skincaredata' 'Lotus' %}"
+       class="list-group-item list-group-item-action">Lotus</a>
+    <a href="{% url 'skincaredata' 'below' %}"
+       class="list-group-item list-group-item-action">Below 1000</a>
+    <a href="{% url 'skincaredata' 'above' %}"
+       class="list-group-item list-group-item-action">Above 1000</a>
+   </div>
   </div>
-  <div class="col-sm-8 offset-sm-1">
-   Skin care Product List
+  <div class="col-sm-8">
+   <div class="row">
+    {% for product in skincare %}
+    <div class="col-sm-4 text-center mb-4">
+     <a href="{% url 'product-detail' product.id %}"
+        class="btn">
+      <div class="item">
+       <img src="{{product.product_image.url}}" alt=""
+            height="300" class="">
+       <div class="fw-bold">Rs. {{product.discounted_price}}
+        <small class="fw-light text-decoration-line-through">
+         {{product.selling_price}}</small></div>
+      </div>
+     </a>
+    </div>
+    {% endfor %}
+   </div>
   </div>
  </div>
 </div>

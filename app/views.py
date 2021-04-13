@@ -43,20 +43,68 @@ def orders(request):
 def change_password(request):
  return render(request, 'app/changepassword.html')
 
-def makeup(request):
- return render(request, 'app/makeup.html')
+def makeup(request, data=None):
+ if data == None:
+  makeup = Product.objects.filter(category='M')
+ elif data== 'Maybelline' or data== 'Elf':
+  makeup = Product.objects.filter(category='M').filter(brand=data)
+ elif data == 'below':
+  makeup= Product.objects.filter(category='M').filter(discounted_price__lt=1000)
+ elif data == 'above':
+  makeup= Product.objects.filter(category='M').filter(discounted_price__gt=1000)
 
-def skincare(request):
- return render(request, 'app/skincare.html')
 
-def accessories(request):
- return render(request, 'app/accessories.html')
 
-def perfume(request):
- return render(request, 'app/perfume.html')
+ return render(request, 'app/makeup.html', {'makeup':makeup})
 
-def haircare(request):
- return render(request, 'app/haircare.html')
+def skincare(request, data=None):
+ if data == None:
+  skincare = Product.objects.filter(category='S')
+ elif data == 'Cetaphil' or data == 'Lotus':
+  skincare = Product.objects.filter(category='S').filter(brand=data)
+ elif data == 'below':
+  skincare = Product.objects.filter(category='S').filter(discounted_price__lt=1000)
+ elif data == 'above':
+  skincare = Product.objects.filter(category='S').filter(discounted_price__gt=1000)
+
+
+ return render(request, 'app/skincare.html', {'skincare':skincare})
+
+def accessories(request, data=None):
+ if data == None:
+  accessories = Product.objects.filter(category='A')
+ elif data == 'XoX' or data == 'MasalaBeads':
+  accessories = Product.objects.filter(category='A').filter(brand=data)
+ elif data == 'below':
+  accessories = Product.objects.filter(category='A').filter(discounted_price__lt=1000)
+ elif data == 'above':
+  accessories = Product.objects.filter(category='A').filter(discounted_price__gt=1000)
+
+ return render(request, 'app/accessories.html', {'accessories':accessories})
+
+def perfume(request, data=None):
+ if data == None:
+  perfume = Product.objects.filter(category='P')
+ elif data == 'VictoriasSecret' or data == 'Wottagirl':
+  perfume = Product.objects.filter(category='P').filter(brand=data)
+ elif data == 'below':
+  perfume = Product.objects.filter(category='P').filter(discounted_price__lt=1000)
+ elif data == 'above':
+  perfume = Product.objects.filter(category='P').filter(discounted_price__gt=1000)
+
+ return render(request, 'app/perfume.html', {'perfume':perfume})
+
+def haircare(request, data=None):
+ if data == None:
+  haircare = Product.objects.filter(category='H')
+ elif data == 'Tresemme' or data == 'Loreal':
+  haircare = Product.objects.filter(category='H').filter(brand=data)
+ elif data == 'below':
+  haircare = Product.objects.filter(category='H').filter(discounted_price__lt=1000)
+ elif data == 'above':
+  haircare = Product.objects.filter(category='H').filter(discounted_price__gt=1000)
+
+ return render(request, 'app/haircare.html', {'haircare':haircare})
 
 def login(request):
  return render(request, 'app/login.html')

@@ -106,11 +106,7 @@ def haircare(request, data=None):
 
  return render(request, 'app/haircare.html', {'haircare':haircare})
 
-def login(request):
- return render(request, 'app/login.html')
 
-# def customerregistration(request):
-#  return render(request, 'app/customerregistration.html')
 class CustomerRegistrationView(View):
  def get(self,request):
   form = CustomerRegistrationForm()

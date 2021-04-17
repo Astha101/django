@@ -20,8 +20,8 @@ class Customer(models.Model):
     zipcode = models.IntegerField()
     state = models.CharField(choices=PRADESH_CHOICES,max_length=50)
 
-    def __str__(self):
-        return str(self.id)
+    # def __str__(self):
+    #     return str(self.id)
 
 CATEGORY_CHOICES = (
     ('B','Beauty Products'),
@@ -50,6 +50,10 @@ class Cart(models.Model):
 
     def __str__(self):
         return str(self.id)
+
+    @property
+    def total_cost(self):
+        return self.quantity * self.product.discounted_price
 
 STATUS_CHOICES = (
     ('Accepted','Accepted'),

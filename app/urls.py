@@ -36,6 +36,9 @@ urlpatterns = [
     path('haircare', views.haircare, name='haircare'),
     path('haircare/<slug:data>', views.haircare, name='haircaredata'),
 
+    path('checkout/', views.checkout, name='checkout'),
+    path('paymentdone/', views.payment_done, name='paymentdone'),
+
     path('accounts/login/',auth_views.LoginView.as_view(template_name='app/login.html',
                                                         authentication_form=LoginForm), name='login'),
     path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
@@ -58,6 +61,6 @@ urlpatterns = [
     path('password-reset-complete/', auth_views.PasswordResetCompleteView.as_view(
         template_name='app/password_reset_complete.html'), name='password_reset_complete'),
 
-    path('checkout/', views.checkout, name='checkout'),
+
     path('registration/', views.CustomerRegistrationView.as_view(), name="customerregistration")
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

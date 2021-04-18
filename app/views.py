@@ -5,6 +5,8 @@ from .forms import CustomerRegistrationForm, CustomerProfileForm
 from django.contrib import messages
 from django.db.models import Q
 from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 
 class ProductView(View):
@@ -120,7 +122,8 @@ def address(request):
  return render(request, 'app/address.html', {'add':add, 'active':'btn-primary'})
 
 def orders(request):
- return render(request, 'app/orders.html')
+ op = OrderPlaced.objects.filter(user=request.user)
+ return render(request, 'app/orders.html', {'order_placed':op})
 
 
 def makeup(request, data=None):
@@ -214,7 +217,17 @@ def checkout(request):
   totalamount = amount + shipping_amount
  return render(request, 'app/checkout.html', {'add':add, 'totalamount': totalamount, 'cart_items':cart_items})
 
+def payment_done(request):
+ user = request.user
+ custid = request.GET.get('custid')
+ customer = Customer.objects.get(id=custid)
+ cart = Cart.object.filter(user=user)
+ for c in cart:
+  OrderPlaced(user=user, customer=customer, product=c.product, quantity=c.quantity).save()
+  c.delete()
+ return redirect("orders")
 
+@method_decorator(login_required, name='dispatch')
 class ProfileView(View):
  def get(self, request):
   totalitem = 0

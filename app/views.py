@@ -26,6 +26,7 @@ class ProductDetailView(View):
   return render(request, 'app/productdetail.html',
   {'product':product})
 
+@login_required
 def add_to_cart(request):
  user = request.user
  product_id = request.GET.get('prod_id')
@@ -33,6 +34,7 @@ def add_to_cart(request):
  Cart(user=user, product=product).save()
  return redirect('/cart')
 
+@login_required
 def show_cart(request):
  if request.user.is_authenticated:
   user = request.user
@@ -117,10 +119,12 @@ def remove_cart(request):
 def buy_now(request):
  return render(request, 'app/buynow.html')
 
+@login_required
 def address(request):
  add = Customer.objects.filter(user=request.user)
  return render(request, 'app/address.html', {'add':add, 'active':'btn-primary'})
 
+@login_required
 def orders(request):
  op = OrderPlaced.objects.filter(user=request.user)
  return render(request, 'app/orders.html', {'order_placed':op})
@@ -189,7 +193,6 @@ def haircare(request, data=None):
 
  return render(request, 'app/haircare.html', {'haircare':haircare})
 
-
 class CustomerRegistrationView(View):
  def get(self,request):
   form = CustomerRegistrationForm()
@@ -202,6 +205,7 @@ class CustomerRegistrationView(View):
    form.save()
   return render(request, 'app/customerregistration.html',{'form': form})
 
+@login_required
 def checkout(request):
  user = request.user
  add = Customer.objects.filter(user=user)
@@ -217,6 +221,7 @@ def checkout(request):
   totalamount = amount + shipping_amount
  return render(request, 'app/checkout.html', {'add':add, 'totalamount': totalamount, 'cart_items':cart_items})
 
+@login_required
 def payment_done(request):
  user = request.user
  custid = request.GET.get('custid')
